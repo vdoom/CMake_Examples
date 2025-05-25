@@ -1,4 +1,6 @@
 #include <TestingTools.h>
+#include "gtest/gtest.h"
+
 //---------------------------------------
 //TMP SOLUTION
 #include <EntityComponent_tests.h>
@@ -14,6 +16,13 @@ using namespace Fregat::Math;
 //	cout<<a.m1[2][0]<<" "<<a.m1[2][1]<<" "<<a.m1[2][2]<<" "<<a.m1[2][3]<<endl;
 //	cout<<a.m1[3][0]<<" "<<a.m1[3][1]<<" "<<a.m1[3][2]<<" "<<a.m1[3][3]<<endl;
 //}
+
+TEST(MathTests, FirstTest) 
+{
+	glm::vec3 gvec1(2.0f, 5.0f, 6.0f);
+	glm::vec3 gvec2(2.0f, 5.0f, 6.0f);
+	EXPECT_EQ(gvec1, gvec2);
+}
 
 
 void TestVec3()
@@ -152,17 +161,31 @@ void TestMat4()
 	assert(Compare(rotMat, grotMat));
 }
 
-void main()
+int main(int argc, char** argv) 
 {
-	TestVec3();	
+	//Old tests
+	TestVec3();
 	TestMat4();
 
 	EntityComponent_Tests::TestEntity teters;
 	teters.TestEC();
-	//EntityComponent_Tests::TestEC();
-	//EXPECT_EQ(Distance(vec1, vec2), 3.0f);
-	//EXPECT_NEAR(Length(vec1), 8.06225774829855f, 0.001);
-	//EXPECT_EQ(Dot(vec1, vec2), 65);
-	//EXPECT_EQ(Cross(vec1, vec2), Vec3(17,10,-14));
-	//EXPECT_EQ(Normalize(vec2), Vec3(0.464990554975f, 0.348742916231f, 0.813733471207f));
+
+	//GTests
+	::testing::InitGoogleTest(&argc, argv);
+	return RUN_ALL_TESTS();
 }
+
+//void main()
+//{
+//	TestVec3();	
+//	TestMat4();
+//
+//	EntityComponent_Tests::TestEntity teters;
+//	teters.TestEC();
+//	//EntityComponent_Tests::TestEC();
+//	//EXPECT_EQ(Distance(vec1, vec2), 3.0f);
+//	//EXPECT_NEAR(Length(vec1), 8.06225774829855f, 0.001);
+//	//EXPECT_EQ(Dot(vec1, vec2), 65);
+//	//EXPECT_EQ(Cross(vec1, vec2), Vec3(17,10,-14));
+//	//EXPECT_EQ(Normalize(vec2), Vec3(0.464990554975f, 0.348742916231f, 0.813733471207f));
+//}

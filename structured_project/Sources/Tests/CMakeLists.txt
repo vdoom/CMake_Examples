@@ -40,7 +40,7 @@ add_executable(Tests ./math_test.cpp
 					 ./Transform_tests.h
 					 ./TestingTools.h)
 						
-target_link_libraries (Tests Fregat)
+target_link_libraries (Tests Fregat gtest)
 
 # Creates a folder "executables" and adds target 
 # project (app.vcproj) under it
